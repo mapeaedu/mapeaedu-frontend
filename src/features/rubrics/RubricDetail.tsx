@@ -114,7 +114,7 @@ const RubricDetail: React.FC<RubricDetailProps> = ({ id }) => {
     return (
       <Card>
         <div className="text-center py-8 text-red-600">
-          Error loading rubric. It may have been deleted or you don't have permission to view it.
+          Error loading rubric. It may have been deleted or you don&apos;t have permission to view it.
         </div>
       </Card>
     );

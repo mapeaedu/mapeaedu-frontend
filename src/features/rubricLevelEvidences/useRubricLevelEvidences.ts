@@ -77,7 +77,7 @@ export const useDeleteRubricLevelEvidence = () => {
   const queryClient = useQueryClient();
   
   return useMutation({
-    mutationFn: ({ id, rubricLevelId }: { id: string; rubricLevelId: string }) => 
+    mutationFn: ({ id }: { id: string; rubricLevelId: string }) => 
       rubricLevelEvidencesApi.deleteRubricLevelEvidence(id).then(res => res),
     onSuccess: (_, variables) => {
       // Remove the specific evidence from the cache

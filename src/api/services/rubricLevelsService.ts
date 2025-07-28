@@ -1,6 +1,5 @@
 import { apiGet, apiPost, apiPut, apiDelete } from '../apiClient';
 import { 
-  RubricLevel, 
   RubricLevelInput, 
   RubricLevelUpdate, 
   RubricLevelsResponse, 

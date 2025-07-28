@@ -36,8 +36,9 @@ const RubricLevelEvidenceDetail: React.FC<RubricLevelEvidenceDetailProps> = ({
   
   // Confirm delete evidence
   const confirmDeleteEvidence = () => {
+    const params = { id, rubricLevelId: levelId };
     deleteMutation.mutate(
-      { id, rubricLevelId: levelId },
+      params,
       {
         onSuccess: () => {
           router.push(`/rubrics/${rubricId}/levels/${levelId}`);
@@ -60,7 +61,7 @@ const RubricLevelEvidenceDetail: React.FC<RubricLevelEvidenceDetailProps> = ({
     return (
       <Card>
         <div className="text-center py-8 text-red-600">
-          Error loading evidence. It may have been deleted or you don't have permission to view it.
+          Error loading evidence. It may have been deleted or you don&apos;t have permission to view it.
         </div>
       </Card>
     );

@@ -62,13 +62,13 @@ export const apiGet = async <T>(url: string, config?: AxiosRequestConfig): Promi
     return response.data;
 };
 
-export const apiPost = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const apiPost = async <T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> => {
     console.log(data);
     const response: AxiosResponse<T> = await apiClient.post(url, data, config);
     return response.data;
 };
 
-export const apiPut = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+export const apiPut = async <T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> => {
     const response: AxiosResponse<T> = await apiClient.put(url, data, config);
     return response.data;
 };

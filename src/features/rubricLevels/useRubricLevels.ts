@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { rubricLevelsApi } from '../../api/services';
-import { RubricLevel, RubricLevelInput, RubricLevelUpdate } from '../../types/rubric';
+import { RubricLevelInput, RubricLevelUpdate } from '../../types/rubric';
 import { rubricKeys } from '../rubrics/useRubrics';
 
 // Query keys

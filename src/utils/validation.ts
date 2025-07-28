@@ -2,7 +2,7 @@
  * Form validation utilities
  */
 
-export type ValidationRule = (value: any) => string | undefined;
+export type ValidationRule = (value: unknown) => string | undefined;
 
 /**
  * Creates a required field validation rule
@@ -10,7 +10,7 @@ export type ValidationRule = (value: any) => string | undefined;
  * @returns Validation rule function
  */
 export const required = (message = 'This field is required'): ValidationRule => {
-  return (value: any) => {
+  return (value: unknown) => {
     if (value === undefined || value === null || value === '') {
       return message;
     }
@@ -30,7 +30,7 @@ export const required = (message = 'This field is required'): ValidationRule => 
  * @returns Validation rule function
  */
 export const minLength = (min: number, message?: string): ValidationRule => {
-  return (value: any) => {
+  return (value: unknown) => {
     if (value === undefined || value === null || value === '') {
       return undefined; // Let required handle empty values
     }
@@ -50,7 +50,7 @@ export const minLength = (min: number, message?: string): ValidationRule => {
  * @returns Validation rule function
  */
 export const maxLength = (max: number, message?: string): ValidationRule => {
-  return (value: any) => {
+  return (value: unknown) => {
     if (value === undefined || value === null || value === '') {
       return undefined; // Let required handle empty values
     }
@@ -70,7 +70,7 @@ export const maxLength = (max: number, message?: string): ValidationRule => {
  * @returns Validation rule function
  */
 export const pattern = (pattern: RegExp, message = 'Invalid format'): ValidationRule => {
-  return (value: any) => {
+  return (value: unknown) => {
     if (value === undefined || value === null || value === '') {
       return undefined; // Let required handle empty values
     }
@@ -89,7 +89,7 @@ export const pattern = (pattern: RegExp, message = 'Invalid format'): Validation
  * @param rules Array of validation rules
  * @returns First error message or undefined if valid
  */
-export const validate = (value: any, rules: ValidationRule[]): string | undefined => {
+export const validate = (value: unknown, rules: ValidationRule[]): string | undefined => {
   for (const rule of rules) {
     const error = rule(value);
     if (error) {
@@ -107,7 +107,7 @@ export const validate = (value: any, rules: ValidationRule[]): string | undefine
  * @returns Object with error messages
  */
 export const validateForm = (
-  values: Record<string, any>,
+  values: Record<string, unknown>,
   schema: Record<string, ValidationRule[]>
 ): Record<string, string | undefined> => {
   const errors: Record<string, string | undefined> = {};

@@ -6,9 +6,9 @@ import { RubricLevelForm } from '../../../../../features/rubricLevels';
 import { useRubric } from '../../../../../features/rubrics';
 
 interface CreateRubricLevelPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function CreateRubricLevelPage({ params }: CreateRubricLevelPageProps) {

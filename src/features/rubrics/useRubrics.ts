@@ -1,6 +1,6 @@
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 import {rubricsApi} from '../../api/services';
-import {Rubric, RubricInput, RubricUpdate} from '../../types/rubric';
+import {RubricInput, RubricUpdate} from '../../types/rubric';
 
 // Query keys
 export const rubricKeys = {
