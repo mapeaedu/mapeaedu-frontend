@@ -11,9 +11,11 @@ interface CreateRubricLevelPageProps {
   }>;
 }
 
-export default function CreateRubricLevelPage({ params }: CreateRubricLevelPageProps) {
-  const { id: rubricId } = params;
-  
+interface CreateRubricLevelClientProps {
+  rubricId: string;
+}
+
+function CreateRubricLevelClient({ rubricId }: CreateRubricLevelClientProps) {
   // Fetch the rubric to get the current max level order
   const { data: rubric, isLoading } = useRubric(rubricId);
   
@@ -39,4 +41,9 @@ export default function CreateRubricLevelPage({ params }: CreateRubricLevelPageP
       </div>
     </Layout>
   );
+}
+
+export default async function CreateRubricLevelPage({ params }: CreateRubricLevelPageProps) {
+  const { id: rubricId } = await params;
+  return <CreateRubricLevelClient rubricId={rubricId} />;
 }

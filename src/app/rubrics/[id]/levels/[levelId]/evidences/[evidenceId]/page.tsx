@@ -5,15 +5,20 @@ import {Layout} from '../../../../../../../components/layout';
 import {RubricLevelEvidenceDetail} from '../../../../../../../features/rubricLevelEvidences';
 
 interface RubricLevelEvidenceDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
         levelId: string;
         evidenceId: string;
-    };
+    }>;
 }
 
-export default function RubricLevelEvidenceDetailPage({params}: RubricLevelEvidenceDetailPageProps) {
-    const {id: rubricId, levelId, evidenceId} = params;
+interface RubricLevelEvidenceDetailClientProps {
+    rubricId: string;
+    levelId: string;
+    evidenceId: string;
+}
+
+function RubricLevelEvidenceDetailClient({rubricId, levelId, evidenceId}: RubricLevelEvidenceDetailClientProps) {
     return (
         <Layout title="Evidence Details">
             <RubricLevelEvidenceDetail
@@ -23,4 +28,9 @@ export default function RubricLevelEvidenceDetailPage({params}: RubricLevelEvide
             />
         </Layout>
     );
+}
+
+export default async function RubricLevelEvidenceDetailPage({params}: RubricLevelEvidenceDetailPageProps) {
+    const {id: rubricId, levelId, evidenceId} = await params;
+    return <RubricLevelEvidenceDetailClient rubricId={rubricId} levelId={levelId} evidenceId={evidenceId} />;
 }

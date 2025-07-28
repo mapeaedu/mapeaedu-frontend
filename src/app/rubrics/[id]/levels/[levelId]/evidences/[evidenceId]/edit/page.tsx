@@ -6,17 +6,20 @@ import {RubricLevelEvidenceForm} from '../../../../../../../../features/rubricLe
 import {useRubricLevelEvidence} from '../../../../../../../../features/rubricLevelEvidences';
 
 interface EditRubricLevelEvidencePageProps {
-    params: {
+    params: Promise<{
         id: string;
         levelId: string;
         evidenceId: string;
-    };
+    }>;
 }
 
-export default function EditRubricLevelEvidencePage({params}: EditRubricLevelEvidencePageProps) {
-    ;
-    const {id: rubricId, levelId, evidenceId} = params;
-    
+interface EditRubricLevelEvidenceClientProps {
+    rubricId: string;
+    levelId: string;
+    evidenceId: string;
+}
+
+function EditRubricLevelEvidenceClient({rubricId, levelId, evidenceId}: EditRubricLevelEvidenceClientProps) {
     // Fetch the evidence being edited
     const {data: evidence, isLoading, isError} = useRubricLevelEvidence(evidenceId);
 
@@ -33,7 +36,7 @@ export default function EditRubricLevelEvidencePage({params}: EditRubricLevelEvi
 
                 {isError && (
                     <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                        Error loading evidence. It may have been deleted or you don't have permission to edit it.
+                        Error loading evidence. It may have been deleted or you don&apos;t have permission to edit it.
                     </div>
                 )}
 
@@ -48,4 +51,10 @@ export default function EditRubricLevelEvidencePage({params}: EditRubricLevelEvi
             </div>
         </Layout>
     );
+}
+
+export default async function EditRubricLevelEvidencePage({params}: EditRubricLevelEvidencePageProps) {
+    const {id: rubricId, levelId, evidenceId} = await params;
+    
+    return <EditRubricLevelEvidenceClient rubricId={rubricId} levelId={levelId} evidenceId={evidenceId} />;
 }

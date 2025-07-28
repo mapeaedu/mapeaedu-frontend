@@ -5,18 +5,26 @@ import {Layout} from '../../../../../components/layout';
 import {RubricLevelDetail} from '../../../../../features/rubricLevels';
 
 interface RubricLevelDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
         levelId: string;
-    };
+    }>;
 }
 
-export default function RubricLevelDetailPage({params}: RubricLevelDetailPageProps) {
-    const {id: rubricId, levelId} = params;
+interface RubricLevelDetailClientProps {
+    rubricId: string;
+    levelId: string;
+}
 
+function RubricLevelDetailClient({rubricId, levelId}: RubricLevelDetailClientProps) {
     return (
         <Layout title="Rubric Level Details">
             <RubricLevelDetail id={levelId} rubricId={rubricId}/>
         </Layout>
     );
+}
+
+export default async function RubricLevelDetailPage({params}: RubricLevelDetailPageProps) {
+    const {id: rubricId, levelId} = await params;
+    return <RubricLevelDetailClient rubricId={rubricId} levelId={levelId} />;
 }

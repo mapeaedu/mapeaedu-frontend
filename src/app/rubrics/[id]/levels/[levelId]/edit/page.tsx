@@ -7,14 +7,18 @@ import {useRubric} from '../../../../../../features/rubrics';
 import {useRubricLevel} from '../../../../../../features/rubricLevels';
 
 interface EditRubricLevelPageProps {
-    params: {
+    params: Promise<{
         id: string;
         levelId: string;
-    };
+    }>;
 }
 
-export default function EditRubricLevelPage({params}: EditRubricLevelPageProps) {
-    const {id, levelId} = params;
+interface EditRubricLevelClientProps {
+    id: string;
+    levelId: string;
+}
+
+function EditRubricLevelClient({id, levelId}: EditRubricLevelClientProps) {
     // Fetch the rubric to get all levels
     const {data: rubric, isLoading: isRubricLoading} = useRubric(id);
 
@@ -40,7 +44,7 @@ export default function EditRubricLevelPage({params}: EditRubricLevelPageProps) 
 
                 {isError && (
                     <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                        Error loading rubric level. It may have been deleted or you don't have permission to edit it.
+                        Error loading rubric level. It may have been deleted or you don&apos;t have permission to edit it.
                     </div>
                 )}
 
@@ -55,4 +59,10 @@ export default function EditRubricLevelPage({params}: EditRubricLevelPageProps) 
             </div>
         </Layout>
     );
+}
+
+export default async function EditRubricLevelPage({params}: EditRubricLevelPageProps) {
+    const {id, levelId} = await params;
+    
+    return <EditRubricLevelClient id={id} levelId={levelId} />;
 }

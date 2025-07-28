@@ -5,13 +5,16 @@ import {Layout} from '../../../../components/layout';
 import {RubricForm, useRubric} from '../../../../features/rubrics';
 
 interface EditRubricPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
-export default function EditRubricPage({params}: EditRubricPageProps) {
-    const {id} = params;
+interface EditRubricClientProps {
+    id: string;
+}
+
+function EditRubricClient({id}: EditRubricClientProps) {
     const {data: rubric, isLoading, isError} = useRubric(id);
 
     return (
@@ -27,7 +30,7 @@ export default function EditRubricPage({params}: EditRubricPageProps) {
 
                 {isError && (
                     <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-                        Error loading rubric. It may have been deleted or you don't have permission to edit it.
+                        Error loading rubric. It may have been deleted or you don&apos;t have permission to edit it.
                     </div>
                 )}
 
@@ -40,4 +43,10 @@ export default function EditRubricPage({params}: EditRubricPageProps) {
             </div>
         </Layout>
     );
+}
+
+export default async function EditRubricPage({params}: EditRubricPageProps) {
+    const {id} = await params;
+    
+    return <EditRubricClient id={id} />;
 }

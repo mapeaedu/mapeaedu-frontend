@@ -5,14 +5,18 @@ import {Layout} from '../../../../../../../components/layout';
 import {RubricLevelEvidenceForm} from '../../../../../../../features/rubricLevelEvidences';
 
 interface CreateRubricLevelEvidencePageProps {
-    params: {
+    params: Promise<{
         id: string;
         levelId: string;
-    };
+    }>;
 }
 
-export default function CreateRubricLevelEvidencePage({params}: CreateRubricLevelEvidencePageProps) {
-    const {id: rubricId, levelId} = params;
+interface CreateRubricLevelEvidenceClientProps {
+    rubricId: string;
+    levelId: string;
+}
+
+function CreateRubricLevelEvidenceClient({rubricId, levelId}: CreateRubricLevelEvidenceClientProps) {
     return (
         <Layout title="Create Evidence">
             <div className="max-w-3xl mx-auto">
@@ -24,4 +28,9 @@ export default function CreateRubricLevelEvidencePage({params}: CreateRubricLeve
             </div>
         </Layout>
     );
+}
+
+export default async function CreateRubricLevelEvidencePage({params}: CreateRubricLevelEvidencePageProps) {
+    const {id: rubricId, levelId} = await params;
+    return <CreateRubricLevelEvidenceClient rubricId={rubricId} levelId={levelId} />;
 }
