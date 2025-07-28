@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({
   onMenuToggle 
 }) => {
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="bg-white shadow-sm border-b border-gray-200 relative z-40">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Left side */}
@@ -48,15 +48,15 @@ const Header: React.FC<HeaderProps> = ({
                 {title}
               </Link>
             </div>
-            
+
             {/* Desktop navigation */}
-            <nav className="hidden md:ml-6 md:flex md:space-x-4">
-              <Link href="/rubrics" className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:bg-gray-100">
-                Rubrics
-              </Link>
-            </nav>
+            {/*<nav className="hidden md:ml-6 md:flex md:space-x-4">*/}
+            {/*  <Link href="/rubrics" className="px-3 py-2 rounded-md text-sm font-medium text-gray-900 hover:bg-gray-100">*/}
+            {/*    Rubrics*/}
+            {/*  </Link>*/}
+            {/*</nav>*/}
           </div>
-          
+
           {/* Right side */}
           <div className="flex items-center">
             {/* User menu - can be expanded later */}
