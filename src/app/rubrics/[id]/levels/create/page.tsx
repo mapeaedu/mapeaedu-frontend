@@ -12,8 +12,7 @@ interface CreateRubricLevelPageProps {
 }
 
 export default function CreateRubricLevelPage({ params }: CreateRubricLevelPageProps) {
-  const unwrappedParams = React.use(params);
-  const rubricId = unwrappedParams.id;
+  const { id: rubricId } = params;
   
   // Fetch the rubric to get the current max level order
   const { data: rubric, isLoading } = useRubric(rubricId);
@@ -33,7 +32,7 @@ export default function CreateRubricLevelPage({ params }: CreateRubricLevelPageP
           </div>
         ) : (
           <RubricLevelForm 
-            rubricId={rubricId} 
+            rubricId={rubricId}
             maxOrder={maxOrder}
           />
         )}
